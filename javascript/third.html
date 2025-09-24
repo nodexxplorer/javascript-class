@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NodeXplorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0d0d2b, #2c2c54);
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+  <style>
+  .wallet-wrapper {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  #connectWalletBtn {
+    background: linear-gradient(135deg, #6f00ff, #a855f7);
+    border: 1px solid #a855f7;
+    color: white;
+    font-weight: 600;
+    padding: 14px 28px;
+    font-size: 1rem;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+  }
+
+  #connectWalletBtn:hover {
+    background: linear-gradient(135deg, #a855f7, #6f00ff);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+  }
+
+  #walletAddress {
+    margin-top: 15px;
+    color: #66ffcc;
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+
+  .icon {
+    margin-right: 8px;
+  }
+</style>
+
+</head>
+<body class="p-6">
+  <div class="wallet-wrapper">
+  <button id="connectWalletBtn">
+    <span class="icon">🔌</span> Connect Wallet
+  </button>
+  <p id="walletAddress"></p>
+</div>
+
+<script>
+  const connectButton = document.getElementById('connectWalletBtn');
+  const walletDisplay = document.getElementById('walletAddress');
+
+  connectButton.addEventListener('click', async () => {
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        walletDisplay.innerText = `🟢 Connected: ${account}`;
+        connectButton.innerText = "✅ Wallet Connected";
+        connectButton.disabled = true;
+        connectButton.style.opacity = 0.8;
+      } catch (err) {
+        walletDisplay.innerText = "❌ Connection rejected.";
+      }
+    } else {
+      alert('🦊 Please install MetaMask to use this feature!');
+    }
+  });
+</script>
+
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-8">
+    <div class="flex items-center space-x-4">
+      <img src="images/logo.png" alt="NodeXplorer Logo" class="h-12 w-12" />
+      <div>
+        <h1 class="text-3xl font-bold">NodeXplorer</h1>
+        <p class="text-sm text-gray-300">Expand the Future of Decentralization</p>
+      </div>
+    </div>
+    <div class="space-x-2">
+      <button class="bg-blue-600 px-4 py-2 rounded text-white font-semibold">Buy-NX</button>
+      <button class="bg-gray-700 px-4 py-2 rounded text-white font-semibold">Whitepaper</button>
+    </div>
+  </div>
+
+  <!-- Hero Image -->
+  <div class="mb-8">
+    <img src="images/ChatGPT Image Jul 3, 2025, 03_22_48 PM.png" alt="Globe" class="rounded-xl border border-blue-500">
+  </div>
+
+  <!-- Stats -->
+  <div class="flex flex-wrap justify-between items-center text-center bg-gray-800 rounded-xl p-6 mb-12">
+    <div class="flex-1 px-4 border-r border-gray-700">
+      <p class="text-3xl font-bold">$3.5M</p>
+      <p class="text-gray-400">Market Cap</p>
+    </div>
+    <div class="flex-1 px-4 border-r border-gray-700">
+      <p class="text-3xl font-bold">50M</p>
+      <p class="text-gray-400">Total Supply</p>
+    </div>
+    <div class="flex-1 px-4 border-r border-gray-700">
+      <p class="text-3xl font-bold">25K+</p>
+      <p class="text-gray-400">Holders</p>
+    </div>
+    <div class="flex-1 px-4">
+      <p class="text-3xl font-bold">98%</p>
+      <p class="text-gray-400">Community Owned</p>
+    </div>
+  </div>
+
+  <!-- Chart and Avatars -->
+  <div class="grid md:grid-cols-2 gap-6 mb-12">
+    <div>
+      <h2 class="text-xl font-semibold mb-2">LiveToken Chart</h2>
+      <div class="bg-gradient-to-br from-purple-700 to-blue-600 rounded-xl p-4">
+        <!-- Placeholder for Sol chart in dark mode with increased height -->
+        <iframe src="https://dexscreener.com/solana" class="w-full h-[500px] rounded" frameborder="0"></iframe>
+      </div>
+    </div>
+    <div>
+      <img src="images/mntdata0.png" alt="Person with headset" class="rounded-xl border border-purple-600">
+    </div>
+  </div>
+
+  <!-- VR Girl and Allocation -->
+  <div class="grid md:grid-cols-2 gap-6 mb-12">
+    <div>
+      <img src="images/mntdata0.png.png" alt="VR Girl" class="rounded-xl">
+    </div>
+    <div>
+      <h2 class="text-xl font-semibold mb-4">Allocation</h2>
+      <ul class="space-y-2 text-gray-300">
+        <li>40% Rewards</li>
+        <li>30% Liquidity</li>
+        <li>20% Development</li>
+        <li>10% Marketing</li>
+      </ul>
+      <ul class="space-y-2 mt-4 text-gray-300">
+        <li>• Low fees</li>
+        <li>• Deflationary mechanism</li>
+        <li>• Staking incentives</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="javascript/condition.js"></script>
+</head>
+<body>
+    <h2>Welcome to Javascript with Icent</h2>
+
+    <form action="">
+    <input type="text" required placeholder="enter your name" id="nameInput">
+    <div>
+        <input type="text" required placeholder="enter your grade" id="gradeInput">
+    <button type="submit">Check Result</button>
+    </div>
+    <p id="result">you entered: </p>
+    </form>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const gradeValue = document.getElementById('gradeInput').value;
+            const schoolGrade = gradeSystem(parseInt(gradeValue));
+            document.getElementById('result').textContent = `you entered: ${schoolGrade}`;
+        });
+
+        // Example gradeSystem function, you can adjust logic in condition.js
+        function gradeSystem(c) {
+    if (c < 30) {
+        return("failed 🤣🤣🤣🤣");
+    }
+    else if (c <= 40) {
+        return("very bad 😢");
+    }
+    else if (c <= 55) {
+        return("not bad 😐");
+    }
+    else if (c <= 75) {
+        return("good 👍");
+    }
+    else if (c <= 85) {
+        return("excellent 🥳");
+    }
+    else if (c <= 100) {
+        return("spectacular, perfect 🍾🍾");
+    }
+    else {
+        return("invalid input");
+    }
+
+    // return `you entered ${c}`;
+}
+    </script>
+</body>
+</html>
